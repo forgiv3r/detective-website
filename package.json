@@ -1,0 +1,23 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "Website for a detective agency",
+  "author": "Łukasz Śliwa",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/apollo": "^4.0.1-rc.3",
+    "@nuxtjs/style-resources": "^1.0.0",
+    "graphql": "^15.3.0",
+    "nuxt": "^2.0.0"
+  },
+  "devDependencies": {
+    "node-sass": "^4.14.1",
+    "sass-loader": "^10.0.1"
+  }
+}

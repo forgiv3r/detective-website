@@ -1,0 +1,13 @@
+query {
+  stronaGlowna {
+    background {
+      id
+      url
+    }
+    posts {
+      id
+      title
+      text
+    }
+  }
+}

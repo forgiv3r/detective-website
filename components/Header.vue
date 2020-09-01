@@ -1,0 +1,51 @@
+<template>
+  <header class="header main" :style="{ backgroundImage }">
+    <h1 class="header__text">
+      <slot></slot>
+    </h1>
+  </header>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        
+      }
+    },
+    props: {
+      background: {
+        type: String, 
+        default: "https://images.unsplash.com/photo-1565018968331-61145555526b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1355&q=80",
+      }
+    },
+    computed: {
+      backgroundImage() {
+        return `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("${this.background}");`
+      },
+    },
+  }
+</script>
+
+<style lang="scss" scoped>
+  
+  .header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-size: cover;
+    background-position: center;
+    height: 15rem;
+  }
+
+  .header__text {
+    color: white;
+  }
+
+  @media (min-width: 1024px) {
+    .header {
+      height: 25rem;
+    }
+  }
+</style>

@@ -1,0 +1,13 @@
+query {
+  stopka {
+  	companyDescription
+    tabs {
+      id
+      header
+      entries {
+        id
+        entry
+      }
+    }
+  }
+}

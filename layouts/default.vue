@@ -1,0 +1,22 @@
+<template>
+  <div>
+    <Navigation />
+    <nuxt />
+    <client-only>
+      <Footer />
+    </client-only>
+  </div>
+</template>
+
+<script>
+import Navigation from "~/components/Navigation"
+import Footer from "~/components/Footer"
+
+export default {
+  components: {Navigation, Footer},
+}
+</script>
+
+<style>
+
+</style>
