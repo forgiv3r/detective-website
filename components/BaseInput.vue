@@ -16,7 +16,7 @@ export default {
 .base-input {
   background-color: transparent;
   border-radius: 0;
-  margin: 0;
+  margin-bottom: 1rem;
   border: 1px solid color(primary);
   outline: none;
   padding: 0 1rem;

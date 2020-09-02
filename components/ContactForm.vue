@@ -72,7 +72,6 @@ export default {
 }
 
 .form__body__input {
-  margin-bottom: 1rem;
   width: 100%;
   display: inline-block;
 }

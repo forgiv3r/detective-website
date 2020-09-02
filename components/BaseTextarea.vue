@@ -17,7 +17,7 @@ export default {
   background-color: transparent;
   display: block;
   border-radius: 0;
-  margin: 0;
+  margin-bottom: 1rem;
   border: 1px solid color(primary);
   outline: none;
   padding: 1rem;

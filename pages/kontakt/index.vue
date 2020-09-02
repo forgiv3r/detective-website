@@ -41,7 +41,7 @@ export default {
 <style lang="scss" scoped>
 .contact__form {
   padding: 0;
-  background-color: white;
+  background-color: white !important;
 }
 
 .contact__address {
