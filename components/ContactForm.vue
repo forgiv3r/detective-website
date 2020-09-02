@@ -64,7 +64,8 @@ export default {
 
 <style lang="scss" scoped>
 .form {
-  background-color: color(text);
+  // background-color: color(text);
+  background-color: white;
 }
 
 .form__header {
