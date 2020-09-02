@@ -1,0 +1,6 @@
+query {
+  informacjaGospodarcza {
+    id
+    body
+  }
+}

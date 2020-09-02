@@ -24,7 +24,6 @@
       return {
         scroll: 0,
         links: [
-          { to: "o-firmie", caption: "O firmie" },
           { to: "detektyw", caption: "Detektyw" },
           { to: "windykacja", caption: "Windykacja" },
           { to: "informacja-gospodarcza", caption: "Informacja Gospodarcza" },
@@ -164,8 +163,7 @@
       position: static;
       height: auto;
       flex-direction: row;
-      font-size: 13px;
-      text-transform: uppercase;
+      font-size: 15px;
       padding: 0;
       align-items: center;
       justify-content: flex-end;

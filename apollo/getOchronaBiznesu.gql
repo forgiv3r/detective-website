@@ -1,0 +1,6 @@
+query {
+  ochronaBiznesu {
+    id
+    body
+  }
+}

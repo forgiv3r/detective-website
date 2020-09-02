@@ -1,0 +1,6 @@
+query {
+  cennik {
+    id
+    body
+  }
+}

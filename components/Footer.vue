@@ -30,14 +30,14 @@
       </div>
     </section>
     <p class="footer__caption">
-      Coded by Łukasz Śliwa. Icons made by Freepik from www.flaticon.com. Theme
+      Icons made by Freepik from www.flaticon.com. Theme
       by unyfox.
     </p>
   </footer>
 </template>
 
 <script>
-import mainQuery from "~/apollo/getFooter.gql";
+import mainQuery from "~/apollo/getStopka.gql";
 
 export default {
   apollo: {

@@ -1,6 +1,6 @@
 <template>
-  <button type="button" class="button" :class="`button-${type}`">
-    <slot></slot>
+  <button type="button" class="button" :class="`button-${type}`" @click="onClick">
+    <slot>Przycisk</slot>
   </button>
 </template>
 
@@ -10,6 +10,10 @@ export default {
     type: {
       type: String,
       default: "primary"
+    },
+    onClick: {
+      type: Function,
+      default: () => {}
     }
   }
 };

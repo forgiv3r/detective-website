@@ -1,0 +1,6 @@
+query {
+  szkolenia {
+    id
+    body
+  }
+}

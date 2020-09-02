@@ -31,9 +31,12 @@ export default {
    ** Global CSS
    */
   css: [
+    './assets/icons/font/flaticon.css',
     "./assets/styles/layout.scss",
     "./assets/styles/animations.scss",
     "./assets/styles/general.scss",
+    './assets/styles/icons.css',
+    './assets/styles/markup.scss',
   ],
   /*
    ** Plugins to load before mounting the App
@@ -46,7 +49,20 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: ["@nuxtjs/apollo"],
+  modules: ["@nuxtjs/apollo", "@nuxtjs/markdownit", '@nuxtjs/axios'],
+  axios: {
+    baseURL: process.env.NODE_ENV == "development"
+    ? "http://localhost:1337/"
+    : "https://jaran-backend.herokuapp.com/"
+  },
+  markdownit: {
+    preset: 'default',
+    html: true,
+    linkify: true,
+    breaks: true,
+    injected: true, 
+    typographer: true
+  },
   apollo: {
     clientConfigs: {
       default: {

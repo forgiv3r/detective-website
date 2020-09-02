@@ -1,0 +1,6 @@
+query {
+  detektyw {
+    id
+    body
+  }
+}

@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "@nuxtjs/apollo": "^4.0.1-rc.3",
+    "@nuxtjs/axios": "^5.12.2",
+    "@nuxtjs/markdownit": "^1.2.10",
     "@nuxtjs/style-resources": "^1.0.0",
     "graphql": "^15.3.0",
     "nuxt": "^2.0.0"
