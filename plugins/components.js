@@ -1,7 +1,7 @@
 import Vue from 'vue'
 
 import BaseButton from "~/components/BaseButton"
-import BaseTextarea from "~/components/BaseTextArea"
+import BaseTextarea from "~/components/BaseTextarea"
 import BaseInput from "~/components/BaseInput"
 import Logo from "~/components/Logo"
 import Header from "~/components/Header"
