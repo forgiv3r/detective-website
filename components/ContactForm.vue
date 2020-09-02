@@ -12,7 +12,7 @@
         <BaseInput class="form__body__input" placeholder="Adres email" />
       </div>
       <BaseTextarea class="form__body__textarea" placeholder="Twoja wiadomość" />
-      <BaseButton class="form__body__button" :on-click="send">Wyślij</BaseButton>
+      <BaseButton class="form__body__button">Wyślij</BaseButton>
     </div>
     <p class="form__error">{{ error }}</p>
   </form>
@@ -38,20 +38,20 @@ export default {
     };
   },
   methods: {
-    async send() {
-      const { from, subject, text } = this.form;
-      if (!from || !subject || !text) {
-        this.error = "Żadne z pól formularza nie może pozostać puste!"
-        return;
-      }
+    // async send() {
+    //   const { from, subject, text } = this.form;
+    //   if (!from || !subject || !text) {
+    //     this.error = "Żadne z pól formularza nie może pozostać puste!"
+    //     return;
+    //   }
 
-      try {
-        await this.$axios.$post("email", this.form);
-        this.handleSendSuccess();
-      } catch (err) {
-        this.handleSendFailure();
-      }
-    },
+    //   try {
+    //     await this.$axios.$post("email", this.form);
+    //     this.handleSendSuccess();
+    //   } catch (err) {
+    //     this.handleSendFailure();
+    //   }
+    // },
     handleSendSuccess() {
       
     },
