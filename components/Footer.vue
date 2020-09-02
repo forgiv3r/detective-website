@@ -10,14 +10,14 @@
       <div class="footer__element">
         <h3 class="footer__element__header">Mapa strony</h3>
         <ul>
-          <nuxt-link
-            v-for="(link, index) in links"
-            :key="index"
-            :to="`/${link.to}`"
-            tag="li"
-            class="footer__element__link"
-            >{{ link.caption }}</nuxt-link
-          >
+          <li v-for="(link, index) in links" :key="index">
+            <nuxt-link
+              :to="`/${link.to}`"
+              tag="a"
+              class="footer__element__link"
+              >{{ link.caption }}</nuxt-link
+            >
+          </li>
         </ul>
       </div>
       <div class="footer__element" v-for="tab in stopka.tabs" :key="tab.id">

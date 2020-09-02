@@ -1,10 +1,10 @@
 <template>
-  <div class="landing main" :style="{ backgroundImage }">
+  <div class="landing main" :style="{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('${background}')` }">
     <transition name="fade" mode="out-in">
       <div class="landing__content" :key="current">
         <h1>{{ currentInfo.title }}</h1>
         <p>{{ currentInfo.text }}</p>
-        <BaseButton type="primary">Więcej</BaseButton>
+        <BaseButton type="primary" :on-click="scrollDown">Więcej</BaseButton>
       </div>
     </transition>
     <div class="landing__dots">
@@ -16,12 +16,22 @@
         @click="switchInfo(n)"
       ></div>
     </div>
+    <div class="landing__hook" ref="scrollHook"></div> 
   </div>
 </template>
 
 <script>
 export default {
-  props: ["infos", "background"],
+  props: {
+    infos: {
+      type: Array, 
+      required: true, 
+    },
+    background: {
+      type: String, 
+      default: "https://images.unsplash.com/photo-1565018968331-61145555526b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1355&q=80",
+    },
+  },
   data() {
     return {
       current: 0,
@@ -29,10 +39,6 @@ export default {
     };
   },
   computed: {
-    backgroundImage() {
-      // const image = this.background ? this.background : "https://images.unsplash.com/photo-1565018968331-61145555526b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1355&q=80";
-      return `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("${"https://images.unsplash.com/photo-1565018968331-61145555526b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1355&q=80"}");`
-    },
     currentInfo() {
       return this.infos[this.current];
     }
@@ -44,6 +50,9 @@ export default {
       if (this.current == this.infos.length) {
         this.current = 0;
       }
+    },
+    scrollDown() {
+      this.$refs.scrollHook.scrollIntoView({ behavior: 'smooth' })
     }
   },
   mounted() {
@@ -104,6 +113,11 @@ export default {
     height: 10px;
     width: 10px;
   }
+}
+
+.landing__hook {
+  position: absolute;
+  bottom: 0;
 }
 
 @media (min-width: 1024px) {
