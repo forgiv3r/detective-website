@@ -1,8 +1,10 @@
 <template>
   <header class="header main" :style="{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('${background}')` }">
-    <h1 class="header__text">
-      <slot></slot>
-    </h1>
+    <transition name="slide-up" appear>
+      <h1 class="header__text">
+        <slot></slot>
+      </h1>
+    </transition>
   </header>
 </template>
 

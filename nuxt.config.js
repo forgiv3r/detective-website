@@ -31,17 +31,17 @@ export default {
    ** Global CSS
    */
   css: [
-    './assets/icons/font/flaticon.css',
+    "./assets/icons/font/flaticon.css",
     "./assets/styles/layout.scss",
     "./assets/styles/animations.scss",
     "./assets/styles/general.scss",
-    './assets/styles/icons.css',
-    './assets/styles/markup.scss',
+    "./assets/styles/icons.css",
+    "./assets/styles/markup.scss"
   ],
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ["~/plugins/components.js"],
+  plugins: ["~/plugins/components.js", { src: "~/plugins/aos.js", ssr: false }],
   /*
    ** Nuxt.js dev-modules
    */
@@ -49,18 +49,19 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: ["@nuxtjs/apollo", "@nuxtjs/markdownit", '@nuxtjs/axios'],
+  modules: ["@nuxtjs/apollo", "@nuxtjs/markdownit", "@nuxtjs/axios"],
   axios: {
-    baseURL: process.env.NODE_ENV == "development"
-    ? "http://localhost:1337/"
-    : "https://jaran-backend.herokuapp.com/"
+    baseURL:
+      process.env.NODE_ENV == "development"
+        ? "http://localhost:1337/"
+        : "https://jaran-backend.herokuapp.com/"
   },
   markdownit: {
-    preset: 'default',
+    preset: "default",
     html: true,
     linkify: true,
     breaks: true,
-    injected: true, 
+    injected: true,
     typographer: true
   },
   apollo: {

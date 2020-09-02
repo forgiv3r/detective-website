@@ -1,6 +1,6 @@
 <template>
   <div class="landing main" :style="{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('${background}')` }">
-    <transition name="fade" mode="out-in">
+    <transition name="fade" mode="out-in" appear>
       <div class="landing__content" :key="current">
         <h1>{{ currentInfo.title }}</h1>
         <p>{{ currentInfo.text }}</p>
