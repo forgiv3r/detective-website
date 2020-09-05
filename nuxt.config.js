@@ -60,7 +60,7 @@ export default {
     hideBadge: false,
     siteKey: '6LdqoccZAAAAAFaqbzPUcxr0DPkLUGRg1zbyNxkG',    
     version: 2,     
-    size: 'normal'        
+    size: 'compact'        
   },
   markdownit: {
     preset: "default",

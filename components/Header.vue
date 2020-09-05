@@ -1,5 +1,5 @@
 <template>
-  <header class="header main" :style="{ backgroundImage: `linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url('${background}')` }">
+  <header class="header main" :style="{ backgroundImage: `linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url('${image}')` }">
     <transition name="slide-up" appear>
       <h1 class="header__text">
         <slot></slot>
@@ -13,9 +13,17 @@
     props: {
       background: {
         type: String, 
-        default: "https://images.unsplash.com/photo-1565018968331-61145555526b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1355&q=80",
       }
     },
+    computed: {
+      image() {
+        if (this.background) {
+          return this.background 
+        } else {
+          return "https://images.unsplash.com/photo-1565018968331-61145555526b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1355&q=80"
+        }
+      }
+    }
   }
 </script>
 
