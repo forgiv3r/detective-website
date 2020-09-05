@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header>Informacja gospodarcza</Header>
+    <Header :background="background && background.url">Informacja gospodarcza</Header>
     <div class="body main">
       <div class="body__text" v-html="$md.render(body)"></div>
       <SidePanel narrow />
@@ -16,7 +16,8 @@ export default {
     let client = context.app.apolloProvider.defaultClient;
     return client.query({ query: mainQuery }).then(({ data }) => {
       return {
-        body: data.informacjaGospodarcza.body
+        body: data.informacjaGospodarcza.body, 
+        background: data.informacjaGospodarcza.background
       };
     });
   },

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header>Cennik</Header>
+    <Header :background="background && background.url">Cennik</Header>
     <div class="body main">
       <div class="body__text" v-html="$md.render(body)"></div>
       <ContactForm narrow />
@@ -16,7 +16,8 @@ export default {
     let client = context.app.apolloProvider.defaultClient;
     return client.query({ query: mainQuery }).then(({ data }) => {
       return {
-        body: data.cennik.body
+        body: data.cennik.body,
+        background: data.cennik.background,
       };
     });
   },

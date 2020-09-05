@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header :background="background.url">Detektyw</Header>
+    <Header :background="background && background.url">Detektyw</Header>
     <div class="body main">
       <div class="body__text" v-html="$md.render(body)"></div>
       <SidePanel narrow />
