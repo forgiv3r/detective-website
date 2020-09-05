@@ -59,7 +59,8 @@ export default {
   recaptcha: {
     hideBadge: false,
     siteKey: '6LdqoccZAAAAAFaqbzPUcxr0DPkLUGRg1zbyNxkG',    
-    version: 2,     
+    version: 2,   
+    language: "pl",  
     size: 'compact'        
   },
   markdownit: {

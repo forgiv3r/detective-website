@@ -5,7 +5,7 @@
       <div class="body__text" v-html="$md.render(body)"></div>
       <SidePanel narrow />
     </div>
-    <!-- <Reminder /> -->
+    <Reminder />
     <ContactForm />
   </div>
 </template>
