@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import mainQuery from "~/apollo/getStopka.gql";
+import mainQuery from "~/apollo/getKontakt.gql";
 
 export default {
   apollo: {

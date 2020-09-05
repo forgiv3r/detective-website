@@ -2,5 +2,9 @@ query {
   informacjaGospodarcza {
     id
     body
+    background {
+      id
+      url
+    }
   }
 }

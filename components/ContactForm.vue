@@ -1,18 +1,35 @@
 <template>
-  <form class="form" :class="{ main: !narrow, 'form--narrow': narrow }" @submit.prevent>
+  <form
+    class="form"
+    :class="{ main: !narrow, 'form--narrow': narrow }"
+    @submit.prevent
+    ref="fom"
+  >
     <h2 class="form__header">Napisz do nas</h2>
     <p class="form__caption">
       W biurze detektywistycznym Jaran zawsze mamy dla Ciebie czas. Skontaktuj
-      się z nami, zostawiając swoje imię oraz adres e-mail. Opisz swoją sprawę oraz sposób, w jaki możemy Ci pomóc. Otrzymasz
-      od nas odpowiedź najszybciej, jak to możliwe.
+      się z nami, zostawiając swoje imię oraz adres e-mail. Opisz swoją sprawę
+      oraz sposób, w jaki możemy Ci pomóc. Otrzymasz od nas odpowiedź
+      najszybciej, jak to możliwe.
     </p>
     <div class="form__body">
       <div class="form__body__inputs">
         <BaseInput class="form__body__input" placeholder="Imię" />
         <BaseInput class="form__body__input" placeholder="Adres email" />
       </div>
-      <BaseTextarea class="form__body__textarea" placeholder="Twoja wiadomość" />
-      <BaseButton class="form__body__button">Wyślij</BaseButton>
+      <BaseTextarea
+        class="form__body__textarea"
+        placeholder="Twoja wiadomość"
+      />
+      <recaptcha
+        class="form__recaptcha"
+        @error="onError"
+        @success="onSuccess"
+        @expired="onError"
+      />
+      <BaseButton class="form__body__button" :disabled="!recaptchaSuccessful"
+        >Wyślij</BaseButton
+      >
     </div>
     <p class="form__error">{{ error }}</p>
   </form>
@@ -22,12 +39,13 @@
 export default {
   props: {
     narrow: {
-      type: Boolean, 
+      type: Boolean,
       default: () => false
     }
   },
   data() {
     return {
+      recaptchaSuccessful: false,
       error: "",
       form: {
         to: "jaranwebsite@gmail.com",
@@ -38,6 +56,12 @@ export default {
     };
   },
   methods: {
+    onSuccess() {
+      this.recaptchaSuccessful = true;
+    },
+    onError() {
+      this.recaptchaSuccessful = false;
+    },
     // async send() {
     //   const { from, subject, text } = this.form;
     //   if (!from || !subject || !text) {
@@ -52,12 +76,10 @@ export default {
     //     this.handleSendFailure();
     //   }
     // },
-    handleSendSuccess() {
-      
-    },
+    handleSendSuccess() {},
     handleSendFailure() {
       // this.$store.commit("utils/setNotification", this.errorMessage);
-    },
+    }
   }
 };
 </script>
@@ -82,6 +104,7 @@ export default {
 
 .form__body__button {
   width: 100%;
+  margin-top: 1rem;
 }
 
 .form__error {
@@ -96,9 +119,9 @@ export default {
   .form__caption {
     max-width: 800px;
   }
-  
+
   .form__body {
-    width: 70%; 
+    width: 70%;
   }
 
   .form__body__inputs {
@@ -115,8 +138,8 @@ export default {
   }
 
   .form--narrow {
-     margin-left: 5%;
-     padding: 2rem;
+    margin-left: 5%;
+    padding: 2rem;
     .form__body {
       width: 100%;
     }

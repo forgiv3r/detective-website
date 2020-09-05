@@ -117,14 +117,14 @@
     left: 0;
     z-index: 999;
     background-color: color(primary);
-    font-size: 1rem;
     transform: translateX(-100%);
     transition: transform 0.5s ease-in-out;
     margin: 0;
     li,
     a {
+      font-size: 17px;
       margin-bottom: 0.5rem;
-      color: color(accents);
+      color: white;
       cursor: pointer;
     }
   }
@@ -186,7 +186,6 @@
 
       li:hover,
       a:hover {
-        color: white;
         &::before {
           width: 100%;
         }

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header>Szkolenia</Header>
+    <Header :background="background.url">Szkolenia</Header>
     <div class="body main">
       <div class="body__text" v-html="$md.render(body)"></div>
       <SidePanel narrow />
@@ -16,7 +16,8 @@ export default {
     let client = context.app.apolloProvider.defaultClient;
     return client.query({ query: mainQuery }).then(({ data }) => {
       return {
-        body: data.szkolenia.body
+        body: data.szkolenia.body,
+        background: data.szkolenia.background,
       };
     });
   },

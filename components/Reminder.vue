@@ -102,6 +102,7 @@ export default {
   padding-left: 1rem;
   padding-right: 70px;
   border-radius: 30px;
+  border: 2px solid color(accents);
   z-index: -1;
   .reminder__message__text {
     transition: opacity .3s;

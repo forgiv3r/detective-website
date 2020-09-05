@@ -1,5 +1,10 @@
 <template>
-  <button type="button" class="button" :class="`button-${type}`" @click="onClick">
+  <button
+    type="button"
+    class="button"
+    :class="[`button-${type}`, { 'button--disabled': disabled }]"
+    @click="onClick"
+    :disabled="disabled">
     <slot>Przycisk</slot>
   </button>
 </template>
@@ -14,6 +19,10 @@ export default {
     onClick: {
       type: Function,
       default: () => {}
+    },
+    disabled: {
+      type: Boolean,
+      default: () => false
     }
   }
 };
@@ -31,7 +40,7 @@ export default {
   font-size: 10px;
   outline: none;
   cursor: pointer;
-  transition: all .3s ease-out;
+  transition: all 0.3s ease-out;
   padding: 0;
 }
 
@@ -61,6 +70,18 @@ export default {
   color: color(primary);
   &:hover {
     background-color: white;
+  }
+}
+
+.button--disabled {
+  background: gray;
+  border-color: gray;
+  color: rgb(78, 78, 78);
+  cursor: not-allowed;
+  &:hover {
+    background: gray;
+    border-color: gray;
+    color: rgb(78, 78, 78);
   }
 }
 </style>

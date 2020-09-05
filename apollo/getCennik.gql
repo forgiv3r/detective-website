@@ -2,5 +2,9 @@ query {
   cennik {
     id
     body
+    background {
+      id
+      url
+    }
   }
 }

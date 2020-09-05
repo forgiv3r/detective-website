@@ -2,5 +2,9 @@ query {
   detektyw {
     id
     body
+    background {
+      id
+      url
+    }
   }
 }

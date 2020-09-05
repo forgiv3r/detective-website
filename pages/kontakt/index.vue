@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header>Kontakt</Header>
+    <Header :background="background && background.url">Kontakt</Header>
     <div class="contact main">
       <ContactForm class="contact__form" />
       <div class="contact__address">
@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import mainQuery from "~/apollo/getStopka.gql"
+import mainQuery from "~/apollo/getKontakt.gql"
 import Map from "~/components/Map";
 
 export default {
@@ -31,7 +31,8 @@ export default {
     let client = context.app.apolloProvider.defaultClient;
     return client.query({ query: mainQuery }).then(({ data }) => {
       return {
-        stopka: data.stopka
+        stopka: data.stopka,
+        background: data.stopka.background,
       };
     });
   },

@@ -2,5 +2,9 @@ query {
   ochronaBiznesu {
     id
     body
+    background {
+      id
+      url
+    }
   }
 }

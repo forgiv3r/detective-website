@@ -49,12 +49,18 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: ["@nuxtjs/apollo", "@nuxtjs/markdownit", "@nuxtjs/axios"],
+  modules: ["@nuxtjs/apollo", "@nuxtjs/markdownit", "@nuxtjs/axios", '@nuxtjs/recaptcha'],
   axios: {
     baseURL:
       process.env.NODE_ENV == "development"
         ? "http://localhost:1337/"
         : "https://jaran-backend.herokuapp.com/"
+  },
+  recaptcha: {
+    hideBadge: false,
+    siteKey: '6LdqoccZAAAAAFaqbzPUcxr0DPkLUGRg1zbyNxkG',    
+    version: 2,     
+    size: 'normal'        
   },
   markdownit: {
     preset: "default",
