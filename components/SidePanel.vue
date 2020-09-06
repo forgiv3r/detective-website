@@ -1,23 +1,69 @@
 <template>
-  <div class="panel" :class="{ main: !narrow, 'panel--narrow': narrow }">
-    <nuxt-link class="panel__tab" tag="div" v-for="(tab, index) in tabs" :key="`tab${index}`" :to="`/${tab.link}`">
-      <span class="panel__tab__icon" :class="`flaticon-${tab.icon}`" />
+  <div
+    class="panel"
+    :class="{ main: !narrow, 'panel--narrow': narrow }"
+    :style="{ backgroundColor: `#${colors[currentColor]}` }"
+  >
+    <div class="colors">
+      <button type="button" @click="currentColor > 0 ? currentColor-- : 0">
+        <
+      </button>
+      <p>Kolor {{ currentColor + 1 }}</p>
+      <button
+        type="button"
+        @click="
+          currentColor < colors.length - 1
+            ? (currentColor = currentColor + 1)
+            : (currentColor = colors.length - 1)
+        "
+      >
+        >
+      </button>
+    </div>
+    <nuxt-link
+      class="panel__tab"
+      tag="div"
+      v-for="(tab, index) in tabs"
+      :key="`tab${index}`"
+      :to="`/${tab.link}`"
+    >
+      <span
+        class="panel__tab__icon"
+        :class="`flaticon-${tab.icon}`"
+        :style="{
+          color: `#${colors[currentColor]}`,
+          outlineColor: `#${colors[currentColor]}`
+        }"
+      />
       <p class="panel__tab__caption">{{ tab.caption }}</p>
       <span class="flaticon-right-chevron" v-if="narrow" />
     </nuxt-link>
-  </div>  
+  </div>
 </template>
 
 <script>
 export default {
   props: {
     narrow: {
-      type: Boolean, 
-      default: () => false,
+      type: Boolean,
+      default: () => false
     }
   },
   data() {
     return {
+      currentColor: 0,
+      colors: [
+        "1976D2",
+        "7F534B",
+        "8C705F",
+        "A3320B",
+        "7A542E",
+        "A44200",
+        "D58936",
+        "902D41",
+        "7C3626",
+        "92140C",
+      ],
       tabs: [
         {
           icon: "gavel",
@@ -67,12 +113,21 @@ export default {
       ]
     };
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
+.colors {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  p {
+    margin: 0;
+  }
+}
 .panel {
-  background-color: color(accents);
+  // background-color: color(accents);
   color: white;
 }
 
@@ -80,7 +135,7 @@ export default {
   margin: 1.5rem 0;
   display: flex;
   cursor: pointer;
-  transition: opacity .3s ease-out;
+  transition: opacity 0.3s ease-out;
   &:hover {
     opacity: 0.8;
   }
@@ -97,7 +152,7 @@ export default {
   justify-content: center;
   background-color: white;
   border: 1px solid white;
-  color: color(accents);
+  // color: color(accents);
   outline: 2px solid color(accents);
   outline-offset: -4px;
 }
