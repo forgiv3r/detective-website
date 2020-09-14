@@ -1,5 +1,9 @@
 query {
   stopka {
+    background {
+      id
+      url
+    }
   	companyDescription
     tabs {
       id

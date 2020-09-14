@@ -2,24 +2,7 @@
   <div
     class="panel"
     :class="{ main: !narrow, 'panel--narrow': narrow }"
-    :style="{ backgroundColor: `#${colors[currentColor]}` }"
   >
-    <div class="colors">
-      <button type="button" @click="currentColor > 0 ? currentColor-- : 0">
-        <
-      </button>
-      <p>Kolor {{ currentColor + 1 }}</p>
-      <button
-        type="button"
-        @click="
-          currentColor < colors.length - 1
-            ? (currentColor = currentColor + 1)
-            : (currentColor = colors.length - 1)
-        "
-      >
-        >
-      </button>
-    </div>
     <nuxt-link
       class="panel__tab"
       tag="div"
@@ -30,10 +13,6 @@
       <span
         class="panel__tab__icon"
         :class="`flaticon-${tab.icon}`"
-        :style="{
-          color: `#${colors[currentColor]}`,
-          outlineColor: `#${colors[currentColor]}`
-        }"
       />
       <p class="panel__tab__caption">{{ tab.caption }}</p>
       <span class="flaticon-right-chevron" v-if="narrow" />
@@ -51,19 +30,6 @@ export default {
   },
   data() {
     return {
-      currentColor: 0,
-      colors: [
-        "1976D2",
-        "7F534B",
-        "8C705F",
-        "A3320B",
-        "7A542E",
-        "A44200",
-        "D58936",
-        "902D41",
-        "7C3626",
-        "92140C",
-      ],
       tabs: [
         {
           icon: "gavel",
@@ -127,7 +93,7 @@ export default {
   }
 }
 .panel {
-  // background-color: color(accents);
+  background-color: color(accents);
   color: white;
 }
 
@@ -152,7 +118,7 @@ export default {
   justify-content: center;
   background-color: white;
   border: 1px solid white;
-  // color: color(accents);
+  color: color(accents);
   outline: 2px solid color(accents);
   outline-offset: -4px;
 }

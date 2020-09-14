@@ -1,11 +1,9 @@
 <template>
   <nav class="navigation main" :class="{ 'navigation--triggered': scroll }">
     <div class="navigation__icons">
-      <div class="navigation__icons__logo">
-        <nuxt-link to="/" tag="div" @click.native="toggleNav">
-          <Logo />
-        </nuxt-link>
-      </div>
+      <nuxt-link class="navigation__icons__logo" to="/" tag="div" @click.native="toggleNav">
+        <Logo />
+      </nuxt-link>
       <div class="navigation__bars" @click="toggleNav" ref="bars">
         <span class="navigation__bar"></span>
         <span class="navigation__bar"></span>
@@ -79,6 +77,8 @@
     z-index: 10000;
     color: white;
     cursor: pointer;
+    display: flex;
+    align-items: center;
   } 
 
   .navigation__icons {
@@ -108,7 +108,7 @@
   .navigation__links {
     height: 100vh;
     width: 100%;
-    padding-top: 10vh;
+    padding-top: 20vh;
     position: fixed;
     display: flex;
     flex-direction: column;
