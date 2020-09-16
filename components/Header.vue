@@ -1,5 +1,5 @@
 <template>
-  <header class="header main" :style="{ backgroundImage: `linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url('${image}')` }">
+  <header class="header main" :style="{ backgroundImage: `linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .3)), url('${image}')` }">
     <transition name="slide-up" appear>
       <h1 class="header__text">
         <slot></slot>
@@ -36,7 +36,7 @@
     text-align: center;
     background-size: cover;
     background-position: center;
-    height: 15rem;
+    height: 45vh;
   }
 
   .header__text {
@@ -45,7 +45,7 @@
 
   @media (min-width: 1024px) {
     .header {
-      height: 25rem;
+      height: 35rem;
     }
   }
 </style>

@@ -2,7 +2,7 @@
   <nav class="navigation main" :class="{ 'navigation--triggered': scroll }">
     <div class="navigation__icons">
       <nuxt-link class="navigation__icons__logo" to="/" tag="div" @click.native="toggleNav">
-        <Logo />
+        <Logo :showSpider="scroll" />
       </nuxt-link>
       <div class="navigation__bars" @click="toggleNav" ref="bars">
         <span class="navigation__bar"></span>
@@ -194,7 +194,8 @@
   }
 
   .navigation--triggered {
-    background-color: color(primary);
+    background-color: color(accents);
+    box-shadow: 0px 2px 10px color(primary);
     padding-top: 1rem;
     padding-bottom: 1rem;
   }
