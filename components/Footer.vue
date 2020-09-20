@@ -8,9 +8,9 @@
     </section>
     <section class="footer__elements" v-if="!$apollo.loading">
       <div class="footer__element">
-        <h3 class="footer__element__header">Mapa strony</h3>
+        <h3 class="footer__element__header">{{ navigationHeader }}</h3>
         <ul>
-          <li v-for="(link, index) in links" :key="index">
+          <li v-for="(link, index) in this.$route.query.lang ? linksEng : links" :key="index">
             <nuxt-link
               :to="`/${link.to}`"
               tag="a"
@@ -37,17 +37,25 @@
 </template>
 
 <script>
-import mainQuery from "~/apollo/getKontakt.gql";
+import QUERY_PL from "~/apollo/pl/getKontakt.gql";
+import QUERY_ENG from "~/apollo/eng/getKontakt.gql";
 
 export default {
   apollo: {
     stopka: {
-      query: mainQuery
+      query() {
+        if (this.$route.query.lang) {
+          return QUERY_ENG
+        } else {
+          return QUERY_PL
+        }
+      }
     }
   },
   data() {
     return {
       stopka: Object,
+      navigationHeader: this.$route.query.lang ? "Useful links" : "Przydatne linki",
       links: [
         { to: "", caption: "O firmie" },
         { to: "", caption: "Detektyw" },
@@ -57,6 +65,15 @@ export default {
         { to: "", caption: "Szkolenia" },
         { to: "", caption: "Cennik" },
         { to: "", caption: "Kontakt" }
+      ],
+      linksEng: [
+        { to: "detektyw", caption: "Detective" },
+        { to: "windykacja", caption: "Debt collection" },
+        { to: "informacja-gospodarcza", caption: "Business Intelligence" },
+        { to: "ochrona-biznesu", caption: "Business protection" },
+        { to: "szkolenia", caption: "Workshops" },
+        { to: "cennik", caption: "Pricing" },
+        { to: "kontakt", caption: "Contact" }
       ]
     };
   }

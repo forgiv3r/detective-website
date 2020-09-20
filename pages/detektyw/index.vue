@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header :background="background && background.url">Detektyw</Header>
+    <Header :background="background && background.url">{{ mainHeader }}</Header>
     <div class="body main">
       <div class="body__text" v-html="$md.render(body)"></div>
       <SidePanel narrow />
@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import mainQuery from "~/apollo/getDetektyw.gql"
+import mainQuery from "~/apollo/pl/getDetektyw.gql"
 export default {
   asyncData(context) {
     let client = context.app.apolloProvider.defaultClient;
@@ -21,5 +21,10 @@ export default {
       };
     });
   },
+  data() {
+    return {
+      mainHeader: this.$route.query.lang ? "Detective" : "Detektyw",
+    }
+  }
 }
 </script>

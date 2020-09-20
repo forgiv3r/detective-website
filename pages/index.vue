@@ -13,13 +13,15 @@
 <script>
 import Landing from "~/components/Landing";
 import Reminder from "~/components/Reminder"
-import mainQuery from "~/apollo/getStronaGlowna.gql";
+import QUERY_PL from "~/apollo/pl/getStronaGlowna.gql";
+import QUERY_ENG from "~/apollo/eng/getStronaGlowna.gql";
 
 export default {
   components: { Landing, Reminder },
   asyncData(context) {
     let client = context.app.apolloProvider.defaultClient;
-    return client.query({ query: mainQuery }).then(({ data }) => {
+    const query = context.route.query.lang ? QUERY_ENG : QUERY_PL
+    return client.query({ query }).then(({ data }) => {
       return {
         background: data.stronaGlowna.background.url,
         infos: data.stronaGlowna.posts,

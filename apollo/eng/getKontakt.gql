@@ -1,0 +1,17 @@
+query {
+  stopka {
+    background {
+      id
+      url
+    }
+  	companyDescription: companyDescription_eng
+    tabs: tabs_eng {
+      id
+      header
+      entries {
+        id
+        entry
+      }
+    }
+  }
+}

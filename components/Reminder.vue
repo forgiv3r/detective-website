@@ -2,7 +2,9 @@
   <div class="reminder" ref="reminder">
     <transition name="slide-left">
       <nuxt-link to="/kontakt" class="reminder__message" v-if="messageVisible">
-        <p class="reminder__message__text">Umów się na bezpłatną konsultację!</p>
+        <p class="reminder__message__text">
+          {{ message }}
+        </p>
       </nuxt-link>
     </transition>
     <transition name="slide-up" appear>
@@ -18,18 +20,23 @@
 export default {
   props: {
     showIconAfter: {
-      type: Number, 
-      default: 2000,
-    }, 
+      type: Number,
+      default: 2000
+    },
     showMessageAfter: {
-      type: Number, 
-      default: 2500,
+      type: Number,
+      default: 2500
     }
   },
   data() {
     return {
       iconVisible: false,
-      messageVisible: false
+      messageVisible: false,
+      iconTimeout: null,
+      messageTimeout: null,
+      message: this.$route.query.lang
+        ? "Schedule your FREE appointment with us!"
+        : "Umów się na bezpłatną konsultację!"
     };
   },
   methods: {
@@ -38,21 +45,25 @@ export default {
       if (this.messageVisible) {
         this.$refs.reminder.style.paddingLeft = "400px";
       } else {
-        setTimeout(() => {
+        this.messageTimeout = setTimeout(() => {
           this.$refs.reminder.style.paddingLeft = "0";
         }, 1000);
       }
     },
     showIcon() {
       this.iconVisible = true;
-      setTimeout(() => {
+      this.iconTimeout = setTimeout(() => {
         this.$refs.reminder.style.overflow = "hidden";
       }, 500);
-    },
+    }
   },
   mounted() {
-    setTimeout(this.showIcon, this.showIconAfter);
-    setTimeout(this.toggleMessage, this.showMessageAfter);
+    this.iconTimeout = setTimeout(this.showIcon, this.showIconAfter);
+    this.messageTimeout = setTimeout(this.toggleMessage, this.showMessageAfter);
+  },
+  beforeDestroy() {
+    clearTimeout(this.iconTimeout);
+    clearTimeout(this.messageTimeout);
   }
 };
 </script>
@@ -81,10 +92,10 @@ export default {
   font-weight: 600;
   font-size: 20px;
   span {
-    transition: opacity .3s;
+    transition: opacity 0.3s;
   }
   &:hover span {
-    opacity: .8;
+    opacity: 0.8;
   }
 }
 
@@ -105,7 +116,7 @@ export default {
   border: 2px solid color(accents);
   z-index: -1;
   .reminder__message__text {
-    transition: opacity .3s;
+    transition: opacity 0.3s;
   }
   &:hover .reminder__message__text {
     opacity: 0.8;

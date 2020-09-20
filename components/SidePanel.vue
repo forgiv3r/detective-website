@@ -33,47 +33,58 @@ export default {
       tabs: [
         {
           icon: "gavel",
-          caption:
-            "Masz kłopoty w sprawach gospodarczych, karnych, cywilnych, rozwodowych?",
+          caption: this.$route.query.lang ?
+            "You have trouble in business, criminal, civic or divorce cases?"
+            : "Masz kłopoty w sprawach gospodarczych, karnych, cywilnych, rozwodowych?",
           link: "detektyw"
         },
         {
           icon: "loan",
-          caption:
-            "Dłużnik nie wywiązuje się z zobowiązań finansowych wobec Ciebie?",
+          caption: this.$route.query.lang ?
+            "Your debtor fails to pay as promised?"
+            : "Dłużnik nie wywiązuje się z zobowiązań finansowych wobec Ciebie?",
           link: "windykacja"
         },
         {
           icon: "portfolio",
-          caption:
-            "Chcesz mieć wiedzę o swoim kontrahencie bądź przeciwniku biznesowym?",
+          caption: this.$route.query.lang ?
+            "You need data on your contractor or competitor?"
+            : "Chcesz mieć wiedzę o swoim kontrahencie bądź przeciwniku biznesowym?",
           link: "informacja-gospodarcza"
         },
         {
           icon: "envelope",
-          caption:
-            "Tajemnice Twojego przedsiębiorstwa dostały się w niepowołane ręce?",
+          caption: this.$route.query.lang ?
+            "Your company's secrets got into wrong hands?"
+            : "Tajemnice Twojego przedsiębiorstwa dostały się w niepowołane ręce?",
           link: "ochrona-biznesu"
         },
         {
           icon: "baby-monitor",
-          caption: "Podejrzewasz zdradę bliskiej Ci osoby?",
+          caption: this.$route.query.lang ?
+            "You suspect your loved one has an affair?"
+            : "Podejrzewasz zdradę bliskiej Ci osoby?",
           link: "detektyw"
         },
         {
           icon: "network",
-          caption: "Podejrzewasz, że jesteś szpiegowany, podsłuchiwany?",
+          caption: this.$route.query.lang ? 
+            "You think you might be spied on?"
+            : "Podejrzewasz, że jesteś szpiegowany, podsłuchiwany?",
           link: "ochrona-biznesu"
         },
         {
           icon: "teamwork",
-          caption: "Twój pracownik jest nieuczciwy lub nielojalny?",
+          caption: this.$route.query.lang ? 
+            "Your employee seems unloyal?"
+            : "Twój pracownik jest nieuczciwy lub nielojalny?",
           link: "ochrona-biznesu"
         },
         {
           icon: "danger",
-          caption:
-            "Chcesz być świadomym zagrożeń we wrogim otoczeniu biznesowym?",
+          caption: this.$route.query.lang ? 
+            "You want to be aware of threats in a hostile business environment?"
+            : "Chcesz być świadomym zagrożeń we wrogim otoczeniu biznesowym?",
           link: "szkolenia"
         }
       ]

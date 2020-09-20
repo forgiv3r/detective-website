@@ -4,7 +4,7 @@
       <div class="landing__content" :key="current">
         <h1>{{ currentInfo.title }}</h1>
         <p>{{ currentInfo.text }}</p>
-        <BaseButton type="primary" :on-click="scrollDown">Więcej</BaseButton>
+        <BaseButton type="primary" :on-click="scrollDown">{{ buttonText }}</BaseButton>
       </div>
     </transition>
     <div class="landing__dots">
@@ -35,7 +35,8 @@ export default {
   data() {
     return {
       current: 0,
-      interval: null
+      interval: null, 
+      buttonText: this.$route.query.lang ? "Read more" : "Więcej",
     };
   },
   computed: {

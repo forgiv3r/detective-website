@@ -1,0 +1,15 @@
+query {
+  stronaGlowna {
+    id
+    background {
+      id
+      url
+    }
+    posts: posts_eng {
+      id
+      title
+      text
+    }
+    body: body_eng
+  }
+}

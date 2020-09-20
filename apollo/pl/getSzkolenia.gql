@@ -1,0 +1,10 @@
+query {
+  szkolenia {
+    id
+    body
+    background {
+      id
+      url
+    }
+  }
+}

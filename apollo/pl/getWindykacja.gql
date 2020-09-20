@@ -1,0 +1,10 @@
+query {
+  windykacja {
+    id
+    body
+    background {
+      id
+      url
+    }
+  }
+}

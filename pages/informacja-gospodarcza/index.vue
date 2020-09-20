@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header :background="background && background.url">Informacja gospodarcza</Header>
+    <Header :background="background && background.url">{{ mainHeader }}</Header>
     <div class="body main">
       <div class="body__text" v-html="$md.render(body)"></div>
       <SidePanel narrow />
@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import mainQuery from "~/apollo/getInformacjaGospodarcza.gql"
+import mainQuery from "~/apollo/pl/getInformacjaGospodarcza.gql"
 export default {
   asyncData(context) {
     let client = context.app.apolloProvider.defaultClient;
@@ -21,6 +21,11 @@ export default {
       };
     });
   },
+  data() {
+    return {
+      mainHeader: this.$route.query.lang ? "Business intelligence" : "Informacja gospodarcza",
+    }
+  }
 }
 </script>
 
