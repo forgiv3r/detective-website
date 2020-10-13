@@ -1,0 +1,75 @@
+webpackHotUpdate("main",{
+
+/***/ "./src/components/AssistantTimer.js":
+/*!******************************************!*\
+  !*** ./src/components/AssistantTimer.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var src_imports_react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/imports/react */ "./src/imports/react.js");
+
+
+class AssistantTimer extends src_imports_react__WEBPACK_IMPORTED_MODULE_0__["Component"] {
+  constructor(props) {
+    super(props);
+
+    this.start = () => {
+      this.props.updateTime(this.timeleft);
+      this.countDownInterval = setInterval(() => {
+        if (this.timeleft > 0) {
+          this.timeleft--;
+          this.props.updateTime(this.timeleft);
+        } else {
+          this.stop();
+        }
+      }, 1000);
+    };
+
+    this.stop = () => {
+      clearInterval(this.countdownInterval);
+      this.countdownInterval = null;
+    };
+
+    this.reset = () => {
+      this.timeleft = this.time;
+      this.$emit('update-time', this.timeleft);
+    };
+
+    this.decrement = () => {
+      this.timeleft--;
+      this.$emit('update-time', this.timeleft);
+    };
+
+    this.increment = () => {
+      this.timeleft++;
+      this.$emit('update-time', this.timeleft);
+    };
+
+    this.render = () => {
+      return "abc";
+    };
+
+    this.timeleft = this.props.time;
+    this.countdownInterval = null;
+  }
+
+  componentDidMount() {
+    console.log(1);
+    this.props.updateTime(this.props.time);
+
+    if (this.props.active) {
+      this.start();
+    }
+  }
+
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (AssistantTimer);
+
+/***/ })
+
+})
+//# sourceMappingURL=main.3ab0e36c33cebd8b18df.hot-update.js.map
