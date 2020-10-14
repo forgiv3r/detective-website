@@ -10,7 +10,10 @@
       <div class="footer__element">
         <h3 class="footer__element__header">{{ navigationHeader }}</h3>
         <ul>
-          <li v-for="(link, index) in this.$route.query.lang ? linksEng : links" :key="index">
+          <li
+            v-for="(link, index) in this.$route.query.lang ? linksEng : links"
+            :key="index"
+          >
             <nuxt-link
               :to="`/${link.to}`"
               tag="a"
@@ -30,8 +33,7 @@
       </div>
     </section>
     <p class="footer__caption">
-      Icons made by Freepik from www.flaticon.com. Theme
-      by unyfox.
+      Icons made by Freepik from www.flaticon.com. Theme by unyfox.
     </p>
   </footer>
 </template>
@@ -41,21 +43,20 @@ import QUERY_PL from "~/apollo/pl/getKontakt.gql";
 import QUERY_ENG from "~/apollo/eng/getKontakt.gql";
 
 export default {
-  apollo: {
-    stopka: {
-      query() {
-        if (this.$route.query.lang) {
-          return QUERY_ENG
-        } else {
-          return QUERY_PL
-        }
-      }
-    }
+  async fetch() {
+    let client = this.$apollo.getClient();
+    const query = this.$route.query.lang ? QUERY_ENG : QUERY_PL;
+    const response = await client.query({ query })
+    console.log(response)
+    this.stopka = response.data.stopka;
+    
   },
   data() {
     return {
       stopka: Object,
-      navigationHeader: this.$route.query.lang ? "Useful links" : "Przydatne linki",
+      navigationHeader: this.$route.query.lang
+        ? "Useful links"
+        : "Przydatne linki",
       links: [
         { to: "", caption: "O firmie" },
         { to: "", caption: "Detektyw" },

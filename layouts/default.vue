@@ -2,21 +2,17 @@
   <div>
     <Navigation />
     <nuxt />
-    <!-- <client-only>
-      <Footer />
-    </client-only> -->
+    <Footer />
   </div>
 </template>
 
 <script>
-import Navigation from "~/components/Navigation"
-import Footer from "~/components/Footer"
+import Navigation from "~/components/Navigation";
+import Footer from "~/components/Footer";
 
 export default {
-  components: {Navigation, Footer},
-}
+  components: { Navigation, Footer }
+};
 </script>
 
-<style>
-
-</style>
+<style></style>
