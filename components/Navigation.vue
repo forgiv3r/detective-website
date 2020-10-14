@@ -1,27 +1,27 @@
 <template>
   <nav class="navigation main" :class="{ 'navigation--triggered': scroll }">
     <div class="navigation__icons">
-      <a
+      <nuxt-link
+        :to="{ path: '/', query: { lang: $route.query.lang } }"
         class="navigation__icons__logo"
-        @click="navigate('/')"
       >
         <Logo :showSpider="scroll > 0" />
-      </a>
+      </nuxt-link>
       <div class="navigation__bars" @click="toggleNav" ref="bars">
         <span class="navigation__bar"></span>
         <span class="navigation__bar"></span>
         <span class="navigation__bar"></span>
       </div>
       <ul class="navigation__links main" ref="navigation" @click="toggleNav">
-        <li
+        <nuxt-link
+          tag="li"
+          :to="{ path: link.to, query: { lang: $route.query.lang } }"
           v-for="(link, index) in this.$route.query.lang ? linksEng : links"
           :key="`link-${index}`"
-          type="button"
-          @click="navigate(link.to)"
         >
           {{ link.caption }}
-        </li>
-        <img ref="languageFlag" @click="toggleLanguage">
+        </nuxt-link>
+        <!-- <img ref="languageFlag" @click="toggleLanguage" /> -->
       </ul>
     </div>
   </nav>
@@ -33,22 +33,22 @@ export default {
     return {
       scroll: 0,
       links: [
-        { to: "detektyw", caption: "Detektyw" },
-        { to: "windykacja", caption: "Windykacja" },
-        { to: "informacja-gospodarcza", caption: "Informacja Gospodarcza" },
-        { to: "ochrona-biznesu", caption: "Ochrona biznesu" },
-        { to: "szkolenia", caption: "Szkolenia" },
-        { to: "cennik", caption: "Cennik" },
-        { to: "kontakt", caption: "Kontakt" }
+        { to: "/detektyw", caption: "Detektyw" },
+        { to: "/windykacja", caption: "Windykacja" },
+        { to: "/informacja-gospodarcza", caption: "Informacja Gospodarcza" },
+        { to: "/ochrona-biznesu", caption: "Ochrona biznesu" },
+        { to: "/szkolenia", caption: "Szkolenia" },
+        { to: "/cennik", caption: "Cennik" },
+        { to: "/kontakt", caption: "Kontakt" }
       ],
       linksEng: [
-        { to: "detektyw", caption: "Detective" },
-        { to: "windykacja", caption: "Debt collection" },
-        { to: "informacja-gospodarcza", caption: "Business Intelligence" },
-        { to: "ochrona-biznesu", caption: "Business protection" },
-        { to: "szkolenia", caption: "Workshops" },
-        { to: "cennik", caption: "Pricing" },
-        { to: "kontakt", caption: "Contact" }
+        { to: "/detektyw", caption: "Detective" },
+        { to: "/windykacja", caption: "Debt collection" },
+        { to: "/informacja-gospodarcza", caption: "Business Intelligence" },
+        { to: "/ochrona-biznesu", caption: "Business protection" },
+        { to: "/szkolenia", caption: "Workshops" },
+        { to: "/cennik", caption: "Pricing" },
+        { to: "/kontakt", caption: "Contact" }
       ]
     };
   },
@@ -72,25 +72,22 @@ export default {
         }
       }
     },
-    navigate(path) {
-      this.$router.push({ path, query: this.$route.query });
-    },
     toggleLanguage() {
       const query = this.$route.query.lang === "eng" ? null : { lang: "eng" };
       this.$router.push({ query });
-      setTimeout(this.$router.go)
-    }, 
+      setTimeout(this.$router.go);
+    },
     setLanguageLinkText() {
-      const lang = this.$route.query.lang
-      let icon = "uk"
+      const lang = this.$route.query.lang;
+      let icon = "uk";
       if (lang === "eng") {
-        icon = "pl"
+        icon = "pl";
       }
-      this.$refs.languageFlag.src = require(`../assets/icons/${icon}.svg`)
-    } 
+      this.$refs.languageFlag.src = require(`../assets/icons/${icon}.svg`);
+    }
   },
   mounted() {
-    this.setLanguageLinkText()
+    // this.setLanguageLinkText();
     window.addEventListener("scroll", () => {
       this.scroll = window.scrollY;
     });

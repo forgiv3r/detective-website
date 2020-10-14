@@ -6,21 +6,20 @@
         {{ stopka.companyDescription }}
       </p>
     </section>
-    <section class="footer__elements" v-if="!$apollo.loading">
+    <section class="footer__elements">
       <div class="footer__element">
-        <h3 class="footer__element__header">{{ navigationHeader }}</h3>
+        <h3 class="footer__element__header">
+          {{ this.$route.query.lang ? "Useful links" : "Przydatne linki" }}
+        </h3>
         <ul>
-          <li
+          <nuxt-link
             v-for="(link, index) in this.$route.query.lang ? linksEng : links"
             :key="index"
+            :to="{ path: link.to, query: { lang: $route.query.lang } }"
+            tag="li"
+            class="footer__element__link"
+            >{{ link.caption }}</nuxt-link
           >
-            <nuxt-link
-              :to="`/${link.to}`"
-              tag="a"
-              class="footer__element__link"
-              >{{ link.caption }}</nuxt-link
-            >
-          </li>
         </ul>
       </div>
       <div class="footer__element" v-for="tab in stopka.tabs" :key="tab.id">
@@ -46,35 +45,29 @@ export default {
   async fetch() {
     let client = this.$apollo.getClient();
     const query = this.$route.query.lang ? QUERY_ENG : QUERY_PL;
-    const response = await client.query({ query })
-    console.log(response)
+    const response = await client.query({ query });
     this.stopka = response.data.stopka;
-    
   },
   data() {
     return {
       stopka: Object,
-      navigationHeader: this.$route.query.lang
-        ? "Useful links"
-        : "Przydatne linki",
       links: [
-        { to: "", caption: "O firmie" },
-        { to: "", caption: "Detektyw" },
-        { to: "", caption: "Windykacja" },
-        { to: "", caption: "Informacja Gospodarcza" },
-        { to: "", caption: "Ochrona biznesu" },
-        { to: "", caption: "Szkolenia" },
-        { to: "", caption: "Cennik" },
-        { to: "", caption: "Kontakt" }
+        { to: "/detektyw", caption: "Detektyw" },
+        { to: "/windykacja", caption: "Windykacja" },
+        { to: "/informacja-gospodarcza", caption: "Informacja Gospodarcza" },
+        { to: "/ochrona-biznesu", caption: "Ochrona biznesu" },
+        { to: "/szkolenia", caption: "Szkolenia" },
+        { to: "/cennik", caption: "Cennik" },
+        { to: "/kontakt", caption: "Kontakt" }
       ],
       linksEng: [
-        { to: "detektyw", caption: "Detective" },
-        { to: "windykacja", caption: "Debt collection" },
-        { to: "informacja-gospodarcza", caption: "Business Intelligence" },
-        { to: "ochrona-biznesu", caption: "Business protection" },
-        { to: "szkolenia", caption: "Workshops" },
-        { to: "cennik", caption: "Pricing" },
-        { to: "kontakt", caption: "Contact" }
+        { to: "/detektyw", caption: "Detective" },
+        { to: "/windykacja", caption: "Debt collection" },
+        { to: "/informacja-gospodarcza", caption: "Business Intelligence" },
+        { to: "/ochrona-biznesu", caption: "Business protection" },
+        { to: "/szkolenia", caption: "Workshops" },
+        { to: "/cennik", caption: "Pricing" },
+        { to: "/kontakt", caption: "Contact" }
       ]
     };
   }
@@ -94,6 +87,10 @@ export default {
 
 .footer__element__header {
   color: color(accents);
+}
+
+.footer__element__link {
+  cursor: pointer;
 }
 
 .footer__caption {
