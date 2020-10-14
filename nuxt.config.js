@@ -52,10 +52,10 @@ export default {
    */
   modules: ["@nuxtjs/apollo", "@nuxtjs/markdownit", "@nuxtjs/axios", '@nuxtjs/recaptcha'],
   axios: {
-    baseURL: "http://localhost:1337/"
-      // process.env.NODE_ENV == "development"
-      //   ? "http://localhost:1337/"
-      //   : "https://jaran-backend.herokuapp.com/"
+    baseURL:
+      process.env.NODE_ENV == "development"
+        ? "http://localhost:1337/"
+        : "https://jaran-backend.herokuapp.com/"
   },
   recaptcha: {
     hideBadge: false,
@@ -75,10 +75,10 @@ export default {
   apollo: {
     clientConfigs: {
       default: {
-        httpEndpoint: "http://localhost:1337/graphql"
-          // process.env.NODE_ENV == "development"
-          //   ? "http://localhost:1337/graphql"
-          //   : "https://jaran-backend.herokuapp.com/graphql"
+        httpEndpoint:
+          process.env.NODE_ENV == "development"
+            ? "http://localhost:1337/graphql"
+            : "https://jaran-backend.herokuapp.com/graphql"
       }
     }
   },
