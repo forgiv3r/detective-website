@@ -2,9 +2,9 @@
   <div>
     <Navigation />
     <nuxt />
-    <client-only>
+    <!-- <client-only>
       <Footer />
-    </client-only>
+    </client-only> -->
   </div>
 </template>
 
