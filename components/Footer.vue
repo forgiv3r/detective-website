@@ -11,18 +11,13 @@
         <h3 class="footer__element__header">
           {{ $t("footer_links_header") }}
         </h3>
-        <ul>
-          <nuxt-link
-            v-for="(link, index) in links"
-            :key="index"
-            :to="localePath(link.to)"
-            tag="li"
-            class="footer__element__link"
-            >{{ $t(`nav_${link.caption}`) }}</nuxt-link
-          >
-        </ul>
+        <Links />
       </div>
-      <div class="footer__element" v-for="tab in stopka.tabs" :key="tab.id">
+      <div
+        class="footer__element"
+        v-for="tab in $i18n.locale === 'en' ? stopka.tabs_eng : stopka.tabs"
+        :key="tab.id"
+      >
         <h3 class="footer__element__header">{{ tab.header }}</h3>
         <ul>
           <li v-for="entry in tab.entries" :key="entry.id">
@@ -39,8 +34,10 @@
 
 <script>
 import mainQuery from "~/apollo/getKontakt.gql";
+import Links from "./Navigation/Links";
 
 export default {
+  components: { Links },
   async fetch() {
     let client = this.$apollo.getClient();
     const response = await client.query({ query: mainQuery });
@@ -48,16 +45,7 @@ export default {
   },
   data() {
     return {
-      stopka: Object,
-      links: [
-        { to: "/detektyw", caption: "detective" },
-        { to: "/windykacja", caption: "debt_collection" },
-        { to: "/informacja-gospodarcza", caption: "business_intelligence" },
-        { to: "/ochrona-biznesu", caption: "business_protection" },
-        { to: "/szkolenia", caption: "workshops" },
-        { to: "/cennik", caption: "pricing" },
-        { to: "/kontakt", caption: "contact" }
-      ]
+      stopka: Object
     };
   }
 };
@@ -76,10 +64,6 @@ export default {
 
 .footer__element__header {
   color: color(accents);
-}
-
-.footer__element__link {
-  cursor: pointer;
 }
 
 .footer__caption {

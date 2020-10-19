@@ -65,7 +65,7 @@ export default {
       messages: {
         pl: require("./lang/pl.json"),
         en: require("./lang/en.json")
-      }
+      },
     }
   },
   axios: {

@@ -14,6 +14,9 @@
 <script>
 import mainQuery from "~/apollo/getSzkolenia.gql";
 export default {
+  nuxtI18n: {
+    locales: ['pl']
+  },
   asyncData(context) {
     let client = context.app.apolloProvider.defaultClient;
     return client.query({ query: mainQuery }).then(({ data }) => {

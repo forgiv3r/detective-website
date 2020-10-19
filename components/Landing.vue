@@ -76,7 +76,7 @@ export default {
 
 <style lang="scss" scoped>
 .landing {
-  height: 100vh;
+  min-height: 100vh;
   background-size: cover;
   background-position: center;
   position: relative;
