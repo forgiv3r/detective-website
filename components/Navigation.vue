@@ -1,10 +1,7 @@
 <template>
   <nav class="navigation main" :class="{ 'navigation--triggered': scroll }">
     <div class="navigation__icons">
-      <nuxt-link
-        :to="{ path: '/', query: { lang: $route.query.lang } }"
-        class="navigation__icons__logo"
-      >
+      <nuxt-link :to="localePath('/')" class="navigation__icons__logo">
         <Logo :showSpider="scroll > 0" />
       </nuxt-link>
       <div class="navigation__bars" @click="toggleNav" ref="bars">
@@ -15,13 +12,22 @@
       <ul class="navigation__links main" ref="navigation" @click="toggleNav">
         <nuxt-link
           tag="li"
-          :to="{ path: link.to, query: { lang: $route.query.lang } }"
-          v-for="(link, index) in this.$route.query.lang ? linksEng : links"
+          v-for="(link, index) in links"
+          :to="localePath(link.to)"
           :key="`link-${index}`"
         >
-          {{ link.caption }}
+          {{ $t(`nav_${link.caption}`) }}
         </nuxt-link>
-        <!-- <img ref="languageFlag" @click="toggleLanguage" /> -->
+        <nuxt-link
+          tag="img"
+          class="navigation__language"
+          :src="
+            require(`../assets/icons/${
+              $i18n.locale === 'en' ? 'pl' : 'uk'
+            }.svg`)
+          "
+          :to="switchLocalePath($i18n.locale === 'en' ? 'pl' : 'en')"
+        />
       </ul>
     </div>
   </nav>
@@ -33,22 +39,13 @@ export default {
     return {
       scroll: 0,
       links: [
-        { to: "/detektyw", caption: "Detektyw" },
-        { to: "/windykacja", caption: "Windykacja" },
-        { to: "/informacja-gospodarcza", caption: "Informacja Gospodarcza" },
-        { to: "/ochrona-biznesu", caption: "Ochrona biznesu" },
-        { to: "/szkolenia", caption: "Szkolenia" },
-        { to: "/cennik", caption: "Cennik" },
-        { to: "/kontakt", caption: "Kontakt" }
-      ],
-      linksEng: [
-        { to: "/detektyw", caption: "Detective" },
-        { to: "/windykacja", caption: "Debt collection" },
-        { to: "/informacja-gospodarcza", caption: "Business Intelligence" },
-        { to: "/ochrona-biznesu", caption: "Business protection" },
-        { to: "/szkolenia", caption: "Workshops" },
-        { to: "/cennik", caption: "Pricing" },
-        { to: "/kontakt", caption: "Contact" }
+        { to: "/detektyw", caption: "detective" },
+        { to: "/windykacja", caption: "debt_collection" },
+        { to: "/informacja-gospodarcza", caption: "business_intelligence" },
+        { to: "/ochrona-biznesu", caption: "business_protection" },
+        { to: "/szkolenia", caption: "workshops" },
+        { to: "/cennik", caption: "pricing" },
+        { to: "/kontakt", caption: "contact" }
       ]
     };
   },
@@ -71,23 +68,9 @@ export default {
           bars[2].classList.toggle("rotated-reverse");
         }
       }
-    },
-    toggleLanguage() {
-      const query = this.$route.query.lang === "eng" ? null : { lang: "eng" };
-      this.$router.push({ query });
-      setTimeout(this.$router.go);
-    },
-    setLanguageLinkText() {
-      const lang = this.$route.query.lang;
-      let icon = "uk";
-      if (lang === "eng") {
-        icon = "pl";
-      }
-      this.$refs.languageFlag.src = require(`../assets/icons/${icon}.svg`);
     }
   },
   mounted() {
-    // this.setLanguageLinkText();
     window.addEventListener("scroll", () => {
       this.scroll = window.scrollY;
     });
@@ -169,6 +152,12 @@ export default {
   }
 }
 
+.navigation__language {
+  height: 10px;
+  object-position: left center;
+  object-fit: contain;
+}
+
 .navigation__links--toggled {
   transform: translateX(0);
 }
@@ -231,6 +220,10 @@ export default {
         width: 100%;
       }
     }
+  }
+
+  .navigation__language {
+    object-position: right center;
   }
 }
 

@@ -9,16 +9,16 @@
     <section class="footer__elements">
       <div class="footer__element">
         <h3 class="footer__element__header">
-          {{ this.$route.query.lang ? "Useful links" : "Przydatne linki" }}
+          {{ $t("footer_links_header") }}
         </h3>
         <ul>
           <nuxt-link
-            v-for="(link, index) in this.$route.query.lang ? linksEng : links"
+            v-for="(link, index) in links"
             :key="index"
-            :to="{ path: link.to, query: { lang: $route.query.lang } }"
+            :to="localePath(link.to)"
             tag="li"
             class="footer__element__link"
-            >{{ link.caption }}</nuxt-link
+            >{{ $t(`nav_${link.caption}`) }}</nuxt-link
           >
         </ul>
       </div>
@@ -38,36 +38,25 @@
 </template>
 
 <script>
-import QUERY_PL from "~/apollo/pl/getKontakt.gql";
-import QUERY_ENG from "~/apollo/eng/getKontakt.gql";
+import mainQuery from "~/apollo/getKontakt.gql";
 
 export default {
   async fetch() {
     let client = this.$apollo.getClient();
-    const query = this.$route.query.lang ? QUERY_ENG : QUERY_PL;
-    const response = await client.query({ query });
+    const response = await client.query({ query: mainQuery });
     this.stopka = response.data.stopka;
   },
   data() {
     return {
       stopka: Object,
       links: [
-        { to: "/detektyw", caption: "Detektyw" },
-        { to: "/windykacja", caption: "Windykacja" },
-        { to: "/informacja-gospodarcza", caption: "Informacja Gospodarcza" },
-        { to: "/ochrona-biznesu", caption: "Ochrona biznesu" },
-        { to: "/szkolenia", caption: "Szkolenia" },
-        { to: "/cennik", caption: "Cennik" },
-        { to: "/kontakt", caption: "Kontakt" }
-      ],
-      linksEng: [
-        { to: "/detektyw", caption: "Detective" },
-        { to: "/windykacja", caption: "Debt collection" },
-        { to: "/informacja-gospodarcza", caption: "Business Intelligence" },
-        { to: "/ochrona-biznesu", caption: "Business protection" },
-        { to: "/szkolenia", caption: "Workshops" },
-        { to: "/cennik", caption: "Pricing" },
-        { to: "/kontakt", caption: "Contact" }
+        { to: "/detektyw", caption: "detective" },
+        { to: "/windykacja", caption: "debt_collection" },
+        { to: "/informacja-gospodarcza", caption: "business_intelligence" },
+        { to: "/ochrona-biznesu", caption: "business_protection" },
+        { to: "/szkolenia", caption: "workshops" },
+        { to: "/cennik", caption: "pricing" },
+        { to: "/kontakt", caption: "contact" }
       ]
     };
   }

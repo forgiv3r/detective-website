@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="panel"
-    :class="{ main: !narrow, 'panel--narrow': narrow }"
-  >
+  <div class="panel" :class="{ main: !narrow, 'panel--narrow': narrow }">
     <nuxt-link
       class="panel__tab"
       tag="div"
@@ -10,11 +7,8 @@
       :key="`tab${index}`"
       :to="`/${tab.link}`"
     >
-      <span
-        class="panel__tab__icon"
-        :class="`flaticon-${tab.icon}`"
-      />
-      <p class="panel__tab__caption">{{ tab.caption }}</p>
+      <span class="panel__tab__icon" :class="`flaticon-${tab.icon}`" />
+      <p class="panel__tab__caption">{{ $t(`side_${tab.caption}`) }}</p>
       <span class="flaticon-right-chevron" v-if="narrow" />
     </nuxt-link>
   </div>
@@ -33,58 +27,42 @@ export default {
       tabs: [
         {
           icon: "gavel",
-          caption: this.$route.query.lang ?
-            "You have trouble in business, criminal, civic or divorce cases?"
-            : "Masz kłopoty w sprawach gospodarczych, karnych, cywilnych, rozwodowych?",
+          caption: "detective_1",
           link: "detektyw"
         },
         {
           icon: "loan",
-          caption: this.$route.query.lang ?
-            "Your debtor fails to pay as promised?"
-            : "Dłużnik nie wywiązuje się z zobowiązań finansowych wobec Ciebie?",
+          caption: "debt_collection_1",
           link: "windykacja"
         },
         {
           icon: "portfolio",
-          caption: this.$route.query.lang ?
-            "You need data on your contractor or competitor?"
-            : "Chcesz mieć wiedzę o swoim kontrahencie bądź przeciwniku biznesowym?",
+          caption: "business_intelligence_1",
           link: "informacja-gospodarcza"
         },
         {
           icon: "envelope",
-          caption: this.$route.query.lang ?
-            "Your company's secrets got into wrong hands?"
-            : "Tajemnice Twojego przedsiębiorstwa dostały się w niepowołane ręce?",
+          caption: "business_protection_1",
           link: "ochrona-biznesu"
         },
         {
           icon: "baby-monitor",
-          caption: this.$route.query.lang ?
-            "You suspect your loved one has an affair?"
-            : "Podejrzewasz zdradę bliskiej Ci osoby?",
+          caption: "detective_2",
           link: "detektyw"
         },
         {
           icon: "network",
-          caption: this.$route.query.lang ? 
-            "You think you might be spied on?"
-            : "Podejrzewasz, że jesteś szpiegowany, podsłuchiwany?",
+          caption: "business_protection_2",
           link: "ochrona-biznesu"
         },
         {
           icon: "teamwork",
-          caption: this.$route.query.lang ? 
-            "Your employee seems unloyal?"
-            : "Twój pracownik jest nieuczciwy lub nielojalny?",
+          caption: "business_protection_3",
           link: "ochrona-biznesu"
         },
         {
           icon: "danger",
-          caption: this.$route.query.lang ? 
-            "You want to be aware of threats in a hostile business environment?"
-            : "Chcesz być świadomym zagrożeń we wrogim otoczeniu biznesowym?",
+          caption: "workshops_1",
           link: "szkolenia"
         }
       ]

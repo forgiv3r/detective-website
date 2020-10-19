@@ -1,7 +1,8 @@
 query {
-  ochronaBiznesu {
+  detektyw {
     id
     body
+    body_eng
     background {
       id
       url

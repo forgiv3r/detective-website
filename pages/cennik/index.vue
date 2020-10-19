@@ -1,8 +1,8 @@
 <template>
   <div>
-    <Header :background="background && background.url">{{ mainHeader }}</Header>
+    <Header :background="background && background.url">{{ $t("nav_pricing") }}</Header>
     <div class="body main">
-      <div class="body__text" v-html="$md.render(body)"></div>
+      <div class="body__text" v-html="$md.render($i18n.locale === 'en' ? body_eng : body)"></div>
       <ContactForm narrow />
     </div>
     <SidePanel />    
@@ -10,22 +10,14 @@
 </template>
 
 <script>
-import mainQuery from "~/apollo/pl/getCennik.gql"
+import mainQuery from "~/apollo/getCennik.gql"
 export default {
   asyncData(context) {
     let client = context.app.apolloProvider.defaultClient;
     return client.query({ query: mainQuery }).then(({ data }) => {
-      return {
-        body: data.cennik.body,
-        background: data.cennik.background,
-      };
+      return data.cennik
     });
   },
-  data() {
-    return {
-      mainHeader: this.$route.query.lang ? "Pricing" : "Cennik",
-    }
-  }
 }
 </script>
 

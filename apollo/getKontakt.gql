@@ -5,7 +5,16 @@ query {
       url
     }
   	companyDescription
+  	companyDescription_eng
     tabs {
+      id
+      header
+      entries {
+        id
+        entry
+      }
+    }
+    tabs_eng {
       id
       header
       entries {

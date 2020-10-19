@@ -1,7 +1,8 @@
 query {
-  cennik {
+  informacjaGospodarcza {
     id
     body
+    body_eng
     background {
       id
       url

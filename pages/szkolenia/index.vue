@@ -1,34 +1,26 @@
 <template>
   <div>
-    <Header :background="background && background.url">{{ mainHeader }}</Header>
+    <Header :background="background && background.url">{{
+      $t("nav_workshops")
+    }}</Header>
     <div class="body main">
-      <div class="body__text" v-html="$md.render(body)"></div>
+      <div class="body__text" v-html="$md.render($i18n.locale === 'en' ? body_eng : body)"></div>
       <SidePanel narrow />
     </div>
     <ContactForm />
-  </div>  
+  </div>
 </template>
 
 <script>
-import mainQuery from "~/apollo/pl/getSzkolenia.gql"
+import mainQuery from "~/apollo/getSzkolenia.gql";
 export default {
   asyncData(context) {
     let client = context.app.apolloProvider.defaultClient;
     return client.query({ query: mainQuery }).then(({ data }) => {
-      return {
-        body: data.szkolenia.body,
-        background: data.szkolenia.background,
-      };
+      return data.szkolenia
     });
   },
-  data() {
-    return {
-      mainHeader: this.$route.query.lang ? "Workshops" : "Szkolenia",
-    }
-  }
-}
+};
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

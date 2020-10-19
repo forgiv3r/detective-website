@@ -1,7 +1,8 @@
 query {
-  windykacja {
+  szkolenia {
     id
     body
+    body_eng
     background {
       id
       url

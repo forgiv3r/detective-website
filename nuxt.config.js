@@ -50,7 +50,24 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: ["@nuxtjs/apollo", "@nuxtjs/markdownit", "@nuxtjs/axios", '@nuxtjs/recaptcha'],
+  modules: [
+    "@nuxtjs/apollo",
+    "@nuxtjs/markdownit",
+    "@nuxtjs/axios",
+    "@nuxtjs/recaptcha",
+    "nuxt-i18n"
+  ],
+  i18n: {
+    locales: ["pl", "en"],
+    defaultLocale: "pl",
+    vueI18n: {
+      fallbackLocale: "en",
+      messages: {
+        pl: require("./lang/pl.json"),
+        en: require("./lang/en.json")
+      }
+    }
+  },
   axios: {
     baseURL:
       process.env.NODE_ENV == "development"
@@ -59,10 +76,10 @@ export default {
   },
   recaptcha: {
     hideBadge: false,
-    siteKey: '6LdqoccZAAAAAFaqbzPUcxr0DPkLUGRg1zbyNxkG',    
-    version: 2,   
-    language: "pl",  
-    size: 'compact'        
+    siteKey: "6LdqoccZAAAAAFaqbzPUcxr0DPkLUGRg1zbyNxkG",
+    version: 2,
+    language: "pl",
+    size: "compact"
   },
   markdownit: {
     preset: "default",

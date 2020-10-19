@@ -1,30 +1,27 @@
 <template>
   <div>
-    <Header :background="background && background.url">{{ mainHeader }}</Header>
+    <Header :background="background && background.url">{{
+      $t("nav_detective")
+    }}</Header>
     <div class="body main">
-      <div class="body__text" v-html="$md.render(body)"></div>
+      <div
+        class="body__text"
+        v-html="$md.render($i18n.locale === 'en' ? body_eng : body)"
+      ></div>
       <SidePanel narrow />
     </div>
     <ContactForm />
-  </div>  
+  </div>
 </template>
 
 <script>
-import mainQuery from "~/apollo/pl/getDetektyw.gql"
+import mainQuery from "~/apollo/getDetektyw.gql";
 export default {
   asyncData(context) {
     let client = context.app.apolloProvider.defaultClient;
     return client.query({ query: mainQuery }).then(({ data }) => {
-      return {
-        body: data.detektyw.body, 
-        background: data.detektyw.background
-      };
+      return data.detektyw
     });
-  },
-  data() {
-    return {
-      mainHeader: this.$route.query.lang ? "Detective" : "Detektyw",
-    }
   }
-}
+};
 </script>

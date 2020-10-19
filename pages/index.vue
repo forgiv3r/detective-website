@@ -1,8 +1,14 @@
 <template>
   <div>
-    <Landing :infos="infos" :background="background" />
+    <Landing
+      :infos="$i18n.locale === 'en' ? posts_eng : posts"
+      :background="background.url"
+    />
     <div class="body main">
-      <div class="body__text" v-html="$md.render(body)"></div>
+      <div
+        class="body__text"
+        v-html="$md.render($i18n.locale === 'en' ? body_eng : body)"
+      ></div>
       <SidePanel narrow />
     </div>
     <Reminder />
@@ -12,22 +18,16 @@
 
 <script>
 import Landing from "~/components/Landing";
-import Reminder from "~/components/Reminder"
-import QUERY_PL from "~/apollo/pl/getStronaGlowna.gql";
-import QUERY_ENG from "~/apollo/eng/getStronaGlowna.gql";
+import Reminder from "~/components/Reminder";
+import mainQuery from "~/apollo/getStronaGlowna.gql";
 
 export default {
   components: { Landing, Reminder },
   asyncData(context) {
     let client = context.app.apolloProvider.defaultClient;
-    const query = context.route.query.lang ? QUERY_ENG : QUERY_PL
-    return client.query({ query }).then(({ data }) => {
-      return {
-        background: data.stronaGlowna.background.url,
-        infos: data.stronaGlowna.posts,
-        body: data.stronaGlowna.body
-      };
+    return client.query({ query: mainQuery }).then(({ data }) => {
+      return data.stronaGlowna;
     });
-  },
+  }
 };
 </script>

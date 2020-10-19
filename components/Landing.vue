@@ -1,10 +1,17 @@
 <template>
-  <div class="landing main" :style="{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('${background}')` }">
+  <div
+    class="landing main"
+    :style="{
+      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('${background}')`
+    }"
+  >
     <transition name="fade" mode="out-in" appear>
       <div class="landing__content" :key="current">
         <h1>{{ currentInfo.title }}</h1>
         <p>{{ currentInfo.text }}</p>
-        <BaseButton type="primary" :on-click="scrollDown">{{ buttonText }}</BaseButton>
+        <BaseButton type="primary" :on-click="scrollDown">{{
+          $t("landing_button")
+        }}</BaseButton>
       </div>
     </transition>
     <div class="landing__dots">
@@ -16,7 +23,7 @@
         @click="switchInfo(n)"
       ></div>
     </div>
-    <div class="landing__hook" ref="scrollHook"></div> 
+    <div class="landing__hook" ref="scrollHook"></div>
   </div>
 </template>
 
@@ -24,19 +31,19 @@
 export default {
   props: {
     infos: {
-      type: Array, 
-      required: true, 
+      type: Array,
+      required: true
     },
     background: {
-      type: String, 
-      default: "https://images.unsplash.com/photo-1565018968331-61145555526b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1355&q=80",
-    },
+      type: String,
+      default:
+        "https://images.unsplash.com/photo-1565018968331-61145555526b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1355&q=80"
+    }
   },
   data() {
     return {
       current: 0,
-      interval: null, 
-      buttonText: this.$route.query.lang ? "Read more" : "Więcej",
+      interval: null,
     };
   },
   computed: {
@@ -53,7 +60,7 @@ export default {
       }
     },
     scrollDown() {
-      this.$refs.scrollHook.scrollIntoView({ behavior: 'smooth' })
+      this.$refs.scrollHook.scrollIntoView({ behavior: "smooth" });
     }
   },
   mounted() {
@@ -106,7 +113,7 @@ export default {
     background-color: white;
     border-radius: 50%;
     margin: 0 0.3rem;
-    transition: all .3s;
+    transition: all 0.3s;
     cursor: pointer;
   }
 

@@ -3,7 +3,7 @@
     <transition name="slide-left">
       <nuxt-link to="/kontakt" class="reminder__message" v-if="messageVisible">
         <p class="reminder__message__text">
-          {{ message }}
+          {{ $t("reminder_message") }}
         </p>
       </nuxt-link>
     </transition>
@@ -33,10 +33,7 @@ export default {
       iconVisible: false,
       messageVisible: false,
       iconTimeout: null,
-      messageTimeout: null,
-      message: this.$route.query.lang
-        ? "Schedule your FREE appointment with us!"
-        : "Umów się na bezpłatną konsultację!"
+      messageTimeout: null
     };
   },
   methods: {

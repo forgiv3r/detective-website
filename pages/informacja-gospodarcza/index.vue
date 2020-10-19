@@ -1,34 +1,29 @@
 <template>
   <div>
-    <Header :background="background && background.url">{{ mainHeader }}</Header>
+    <Header :background="background && background.url">{{
+      $t("nav_business_intelligence")
+    }}</Header>
     <div class="body main">
-      <div class="body__text" v-html="$md.render(body)"></div>
+      <div
+        class="body__text"
+        v-html="$md.render($i18n.locale === 'en' ? body_eng : body)"
+      ></div>
       <SidePanel narrow />
     </div>
     <ContactForm />
-  </div>  
+  </div>
 </template>
 
 <script>
-import mainQuery from "~/apollo/pl/getInformacjaGospodarcza.gql"
+import mainQuery from "~/apollo/getInformacjaGospodarcza.gql";
 export default {
   asyncData(context) {
     let client = context.app.apolloProvider.defaultClient;
     return client.query({ query: mainQuery }).then(({ data }) => {
-      return {
-        body: data.informacjaGospodarcza.body, 
-        background: data.informacjaGospodarcza.background
-      };
+      return data.informacjaGospodarcza;
     });
-  },
-  data() {
-    return {
-      mainHeader: this.$route.query.lang ? "Business intelligence" : "Informacja gospodarcza",
-    }
   }
-}
+};
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
