@@ -3,7 +3,11 @@
     <section class="footer__about">
       <Logo class="footer__element__logo" />
       <p class="footer__about__text">
-        {{ stopka.companyDescription }}
+        {{
+          $i18n.locale === "en"
+            ? stopka.companyDescription_eng
+            : stopka.companyDescription
+        }}
       </p>
     </section>
     <section class="footer__elements">
