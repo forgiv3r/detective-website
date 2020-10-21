@@ -25,6 +25,7 @@ export default {
 .logo__container {
   display: flex;
   align-items: center;
+  width: 270px;
 }
 
 .logo {
@@ -40,7 +41,7 @@ export default {
 @media (min-width: 430px) {
   .spider {
     height: 50px;
-    transform: translateX(-50px);
+    transform: translateX(-75px);
     display: inline-block;
   }
 }

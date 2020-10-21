@@ -58,8 +58,10 @@ export default {
 
 .animated {
   transition: all 0.3s;
+  margin: 0 .5rem;
+  flex-basis: 10%;
   &:hover {
-    transform: translateX(10px);
+    transform: translateY(3px);
   }
 }
 </style>

@@ -3,10 +3,13 @@
     <nuxt-link :to="localePath('/')" class="navigation__logo">
       <Logo :showSpider="scroll > 0" />
     </nuxt-link>
+    <div class="navigation__menu main desktop">
+      <Links animated />
+    </div>
     <div class="navigation__buttons">
       <nuxt-link
         tag="img"
-        class="navigation__language"
+        class="navigation__buttons__language"
         :src="
           require(`../assets/icons/${$i18n.locale === 'en' ? 'pl' : 'uk'}.svg`)
         "
@@ -23,7 +26,7 @@
     </div>
     <transition name="slide-to-left">
       <div
-        class="navigation__menu main"
+        class="navigation__menu main mobile"
         @click="toggleNav"
         v-show="menuVisible"
       >
@@ -90,6 +93,7 @@ export default {
   font-size: 27px;
   line-height: 1;
   padding: 0;
+  margin-left: 0.75rem;
   cursor: pointer;
 }
 
@@ -109,10 +113,10 @@ export default {
   }
 }
 
-.navigation__language {
+.navigation__buttons__language {
   height: 30px;
   object-fit: cover;
-  margin-right: 0.75rem;
+  margin-left: 0.75rem;
   cursor: pointer;
 }
 
@@ -123,9 +127,31 @@ export default {
   padding-bottom: 1rem;
 }
 
-@media (min-width: 1024px) {
+.desktop {
+  display: none;
+}
+
+@media (min-width: 1140px) {
+  .navigation__buttons__trigger {
+    display: none;
+  }
+  .navigation__menu {
+    display: flex;
+    height: auto;
+    position: static;
+    background-color: transparent;
+    padding: 0;
+    flex-grow: 1;
+  }
   .navigation__menu ul {
-    font-size: 24px;
+    font-size: 17px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    text-align: center;
+  }
+  .mobile {
+    display: none;
   }
 }
 </style>
