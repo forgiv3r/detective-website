@@ -17,7 +17,7 @@
       />
       <transition name="fade" mode="out-in" :duration="100">
         <button
-          class="navigation__buttons__trigger"
+          class="navigation__buttons__trigger mobile"
           :class="`flaticon-${menuVisible ? 'cancel' : 'menu'}`"
           :key="menuVisible"
           @click="toggleNav"
@@ -123,8 +123,6 @@ export default {
 .navigation--triggered {
   background-color: color(accents);
   box-shadow: 0px 2px 10px color(primary);
-  padding-top: 1rem;
-  padding-bottom: 1rem;
 }
 
 .desktop {
@@ -132,14 +130,11 @@ export default {
 }
 
 @media (min-width: 1140px) {
-  .navigation__buttons__trigger {
-    display: none;
-  }
   .navigation__menu {
     display: flex;
     height: auto;
     position: static;
-    background-color: transparent;
+    background-color: initial;
     padding: 0;
     flex-basis: 722px;  
     flex-grow: 1;
