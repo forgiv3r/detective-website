@@ -2,6 +2,7 @@
   <input
     class="base-input"
     :placeholder="placeholder"
+    :value="value"
     @input="$emit('input', $event.target.value)"
   />
 </template>
