@@ -141,13 +141,15 @@ export default {
     position: static;
     background-color: transparent;
     padding: 0;
+    flex-basis: 722px;  
     flex-grow: 1;
+    flex-shrink: 0;
   }
   .navigation__menu ul {
     font-size: 17px;
     flex-direction: row;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-evenly;
     text-align: center;
   }
   .mobile {
