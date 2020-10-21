@@ -12,12 +12,18 @@
         <BaseInput
           class="form__body__input"
           :placeholder="$t('contact_form_name_input')"
+          v-model="form.name"
         />
-        <BaseInput class="form__body__input" placeholder="E-mail" />
+        <BaseInput
+          class="form__body__input"
+          placeholder="E-mail"
+          v-model="form.from"
+        />
       </div>
       <BaseTextarea
         class="form__body__textarea"
         :placeholder="$t('contact_form_message_input')"
+        v-model="form.text"
       />
       <recaptcha
         class="form__recaptcha"
@@ -25,11 +31,14 @@
         @success="onSuccess"
         @expired="onError"
       />
-      <BaseButton class="form__body__button" :disabled="!recaptchaSuccessful">{{
-        $t("contact_form_button")
-      }}</BaseButton>
+      <BaseButton
+        class="form__body__button"
+        :disabled="!recaptchaSuccessful"
+        :onClick="sendEmail"
+        >{{ $t("contact_form_button") }}</BaseButton
+      >
     </div>
-    <p class="form__error">{{ error }}</p>
+    <p class="form__message" ref="message">{{ message }}</p>
   </form>
 </template>
 
@@ -44,12 +53,11 @@ export default {
   data() {
     return {
       recaptchaSuccessful: false,
-      error: "",
+      message: "",
       form: {
-        to: "jaranwebsite@gmail.com",
-        from: "lsliwaradioluz@gmail.com",
-        subject: "Łukasz hehehehehehe",
-        text: "Hej ziom!"
+        from: "",
+        name: "",
+        text: ""
       }
     };
   },
@@ -60,23 +68,47 @@ export default {
     onError() {
       this.recaptchaSuccessful = false;
     },
-    // async send() {
-    //   const { from, subject, text } = this.form;
-    //   if (!from || !subject || !text) {
-    //     this.error = "Żadne z pól formularza nie może pozostać puste!"
-    //     return;
-    //   }
+    setMessage(text, color = "red") {
+      this.$refs.message.style.color = color;
+      this.message = text;
+      setTimeout(() => {
+        this.message = "";
+      }, 2000);
+    },
+    prepareEmailData() {
+      return {
+        to: "jaranwebsite@gmail.com",
+        from: this.form.from,
+        subject: `Nowa wiadomość z formularza kontaktowego od ${this.form.name}`,
+        text: this.form.text
+      };
+    },
+    async sendEmail() {
+      const { from, text, name } = this.form;
+      if (!from || !text || !name) {
+        this.setMessage("Żadne z pól formularza nie może pozostać puste!");
+        return;
+      }
 
-    //   try {
-    //     await this.$axios.$post("email", this.form);
-    //     this.handleSendSuccess();
-    //   } catch (err) {
-    //     this.handleSendFailure();
-    //   }
-    // },
-    handleSendSuccess() {},
+      const emailData = this.prepareEmailData();
+
+      try {
+        await this.$axios.$post("email", emailData);
+        this.handleSendSuccess();
+      } catch {
+        this.handleSendFailure();
+      }
+    },
+    handleSendSuccess() {
+      this.setMessage("Wiadomość wysłana pomyślnie!", "green");
+      this.form = {
+        from: "",
+        name: "",
+        text: ""
+      };
+    },
     handleSendFailure() {
-      // this.$store.commit("utils/setNotification", this.errorMessage);
+      this.setMessage("Coś poszło nie tak. Sprawdź połączenie z Internetem.");
     }
   }
 };
@@ -105,7 +137,7 @@ export default {
   margin-top: 1rem;
 }
 
-.form__error {
+.form__message {
   color: red;
 }
 

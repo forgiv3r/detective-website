@@ -1,10 +1,17 @@
 <template>
-  <input class="base-input" :placeholder="placeholder" />
+  <input
+    class="base-input"
+    :placeholder="placeholder"
+    @input="$emit('input', $event.target.value)"
+  />
 </template>
 
 <script>
 export default {
   props: {
+    value: {
+      type: String
+    },
     placeholder: {
       type: String
     }
@@ -22,7 +29,7 @@ export default {
   padding: 0 1rem;
   height: 50px;
   font-family: inherit;
-  transition: border-color .3s ease-out;
+  transition: border-color 0.3s ease-out;
   &:focus {
     border-color: color(accents);
   }
