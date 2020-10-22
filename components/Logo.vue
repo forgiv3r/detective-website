@@ -25,7 +25,7 @@ export default {
 .logo__container {
   display: flex;
   align-items: center;
-  width: 270px;
+  max-width: 270px;
 }
 
 .logo {
