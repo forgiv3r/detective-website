@@ -106,6 +106,8 @@ export default {
   left: 0;
   z-index: 999;
   background-color: color(accents);
+  display: flex;
+  justify-content: flex-end;
   ul {
     align-items: flex-end;
     font-size: 20px;
