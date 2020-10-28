@@ -77,7 +77,7 @@ export default {
     },
     prepareEmailData() {
       return {
-        to: "lsliwaradioluz@gmail.com",
+        to: "lukasz.mateusz.sliwa@gmail.com",
         from: "formularz@jaran.com.pl",
         subject: `Nowa wiadomość z formularza kontaktowego od ${this.form.name}`,
         html: `<h3>Tę wiadomość wysłano za pośrednictwem formularza kontaktowego.</h3>
