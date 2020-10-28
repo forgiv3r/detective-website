@@ -80,10 +80,7 @@ export default {
         to: "lukasz.mateusz.sliwa@gmail.com",
         from: "formularz@jaran.com.pl",
         subject: `Nowa wiadomość z formularza kontaktowego od ${this.form.name}`,
-        html: `<h3>Tę wiadomość wysłano za pośrednictwem formularza kontaktowego.</h3>
-               <p>Odpowiedź prześlij na adres ${this.form.from}.</p>
-               <h3>Treść wiadomości</h3>
-               <p>${this.form.text}</p>`
+        text: `${this.form.from}: ${this.form.text}`
       };
     },
     async sendEmail() {
