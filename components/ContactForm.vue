@@ -77,10 +77,13 @@ export default {
     },
     prepareEmailData() {
       return {
-        to: "jaranwebsite@gmail.com",
-        from: this.form.from,
+        to: "lsliwaradioluz@gmail.com",
+        from: "jaranwebsite@gmail.com",
         subject: `Nowa wiadomość z formularza kontaktowego od ${this.form.name}`,
-        text: this.form.text
+        html: `<h3>Tę wiadomość wysłano za pośrednictwem formularza kontaktowego.</h3>
+               <p>Odpowiedź prześlij na adres ${this.form.from}.</p>
+               <h3>Treść wiadomości</h3>
+               <p>${this.form.text}</p>`
       };
     },
     async sendEmail() {
