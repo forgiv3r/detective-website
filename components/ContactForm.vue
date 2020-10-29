@@ -55,9 +55,9 @@ export default {
       recaptchaSuccessful: false,
       message: "",
       form: {
-        from: "",
-        name: "",
-        text: ""
+        from: "lukasz.mateusz.sliwa@gmail.com",
+        name: "Łukasz",
+        text: "Wiadomość testowa"
       }
     };
   },
@@ -77,8 +77,8 @@ export default {
     },
     prepareEmailData() {
       return {
-        to: "biuro@jaran.com.pl",
-        from: "formularz@jaran.com.pl",
+        to: "formularz@jaran.com.pl",
+        from: "biuro@jaran.com.pl",
         subject: `Nowa wiadomość z formularza kontaktowego od ${this.form.name}`,
         text: `${this.form.from}: ${this.form.text}`
       };
