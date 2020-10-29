@@ -55,9 +55,9 @@ export default {
       recaptchaSuccessful: false,
       message: "",
       form: {
-        from: "lukasz.mateusz.sliwa@gmail.com",
-        name: "Łukasz",
-        text: "Wiadomość testowa"
+        from: "",
+        name: "",
+        text: ""
       }
     };
   },
