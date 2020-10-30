@@ -79,8 +79,50 @@ export default {
       return {
         to: "jaranwebsite@gmail.com",
         from: "formularz@jaran.com.pl",
-        subject: `Nowa wiadomość z formularza kontaktowego od ${this.form.name}`,
-        text: `${this.form.from}: ${this.form.text}`
+        subject: `Nowa wiadomość z formularza kontaktowego!`,
+        html: `<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Email template</title>
+  </head>
+  <body
+    style="
+      margin: 0;
+      padding: 0;
+      font-family: 'Helvetica Neue', sans-serif;
+      background-color: #f9f9f9;
+      font-size: 90%;
+    "
+  >
+    <div style="padding: 3rem 0">
+      <div
+        style="
+          color: white;
+          background-color: #92140c;
+          padding: 3rem 2rem;
+          margin: 0 auto;
+          max-width: 400px;
+        "
+      >
+        <h2
+          style="
+            color: white;
+            margin-top: 1rem;
+            font-weight: 500;
+          "
+        >
+          ${this.form.name} pisze:
+        </h2>
+        <p style="line-height: 1.4">
+          ${this.form.text}
+        </p>
+        <p style="margin-bottom: 0;">Odpowiedź proszę przesłać na adres: ${this.form.from}</p>
+      </div>
+    </div>
+  </body>
+</html>`
       };
     },
     async sendEmail() {
