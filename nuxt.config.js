@@ -12,7 +12,8 @@ export default {
       {
         hid: "description",
         name: "description",
-        content: process.env.npm_package_description || ""
+        content:
+          "Profesjonalna firma świadcząca usługi detektywistyczne i windykacyjne. Posiadamy doświadczenie, umiejętności i determinację w rozwiązywaniu Twoich trudnych spraw."
       }
     ],
     link: [
@@ -65,7 +66,7 @@ export default {
       messages: {
         pl: require("./lang/pl.json"),
         en: require("./lang/en.json")
-      },
+      }
     }
   },
   axios: {
