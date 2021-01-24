@@ -12,8 +12,7 @@ export default {
       {
         hid: "description",
         name: "description",
-        content:
-          "Profesjonalna firma świadcząca usługi detektywistyczne i windykacyjne. Posiadamy doświadczenie, umiejętności i determinację w rozwiązywaniu Twoich trudnych spraw."
+        content: "Świadczymy usługi detektywistyczne i windykacyjne dla osób prywatnych oraz podmiotów gospodarczych. Poufność, profesjonalizm, 15-letnie doświadczenie."
       }
     ],
     link: [
